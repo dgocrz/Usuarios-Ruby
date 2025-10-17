@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
   get "users/index"
   get "users/new"
   get "users/show"
@@ -17,6 +20,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 Rails.application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
   resources :users,only: [:new,:create,:show]
   root "users#new"
 end

@@ -5,11 +5,12 @@ class UsersController < ApplicationController
   end
 
   def new
-
+    #Se crea un nuevo usuario
     @user = User.new
   end
 
   def show
+    #mostramos los parametros ligados al usuario correo, nombre o contraseña
     @user = User.find(params[:id])
   end
 
