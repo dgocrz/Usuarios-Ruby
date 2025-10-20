@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
   def index
 
 
@@ -35,5 +36,11 @@ class UsersController < ApplicationController
   end
 
   def search
+  end
+def require_login 
+    unless logged_in?
+      redirect_to login_path, alert: "Deberas Iniciar Sesión para acceder"
+
+  end 
   end
 end

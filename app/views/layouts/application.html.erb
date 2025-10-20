@@ -24,5 +24,16 @@
 
   <body>
     <%= yield %>
+    <p style="background:#eee; padding:10px;">
+  <% if logged_in? %>
+    Bienvenido, <%= current_user.name %> |
+    <%= link_to "Perfil", current_user %> |
+    <%= link_to "Cerrar sesión", logout_path, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to "Iniciar sesión", login_path %> |
+    <%= link_to "Registrarme", new_user_path %>
+  <% end %>
+</p>
+
   </body>
 </html>

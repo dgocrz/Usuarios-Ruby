@@ -1,30 +1,18 @@
 Rails.application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  get "users/index"
-  get "users/new"
-  get "users/show"
-  get "users/create"
-  get "users/search"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Rutas principales de posts
+  resources :posts, only: [:new, :create, :destroy]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Rutas de usuarios (registro, perfil)
+  resources :users, only: [:new, :create, :show]
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Rutas de sesión (login/logout)
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-Rails.application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  resources :users,only: [:new,:create,:show]
-  root "users#new"
-end
+  # Dashboard
+  get "/dashboard", to: "dashboard#index"
 
+  # Ruta raíz (página principal)
+  root "sessions#new"
 end

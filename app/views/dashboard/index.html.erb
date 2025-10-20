@@ -1,0 +1,18 @@
+<h1>Dashboard de <%= current_user.name %></h1>
+
+<%= link_to "Nuevo post", new_post_path %> |
+<%= link_to "Cerrar sesión", logout_path, data: { turbo_method: :delete } %>
+
+<hr>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+      <h3><%= post.title %></h3>
+      <p><%= post.content %></p>
+      <%= link_to "Eliminar", post_path(post), data: { turbo_method: :delete, confirm: "¿Seguro?" } %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No tienes publicaciones todavía.</p>
+<% end %>
